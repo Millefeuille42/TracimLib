@@ -29,3 +29,8 @@ class TracimApi:
         url = f"{self.api_url}/api/workspaces/{workspace_id}/contents"
         response = do_json_request(self.session, url, "get")
         return json.loads(response.text)
+
+    def post_comment(self, workspace_id, content_id, comment):
+        url = f"{self.api_url}/api/workspaces/{workspace_id}/contents/{content_id}/comments"
+        data = {"raw_content": comment}
+        do_json_request(self.session, url, "post", data=data)
