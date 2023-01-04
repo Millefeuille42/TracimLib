@@ -30,6 +30,15 @@ class TracimApi:
         response = do_json_request(self.session, url, "get")
         return json.loads(response.text)
 
+    def get_comments_of_content(self, workspace_id, content_id):
+        url = f"{self.api_url}/api/workspaces/{workspace_id}/contents/{content_id}/comments"
+        response = do_json_request(self.session, url, "get")
+        return json.loads(response.text)
+
+    def delete_comment_of_content(self, workspace_id, content_id, comment_id):
+        url = f"{self.api_url}/api/workspaces/{workspace_id}/contents/{content_id}/comments/{comment_id}"
+        do_json_request(self.session, url, "delete")
+
     def post_comment(self, workspace_id, content_id, comment):
         url = f"{self.api_url}/api/workspaces/{workspace_id}/contents/{content_id}/comments"
         data = {"raw_content": comment}
