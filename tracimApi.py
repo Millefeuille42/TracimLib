@@ -30,6 +30,11 @@ class TracimApi:
         response = do_json_request(self.session, url, "get")
         return json.loads(response.text)
 
+    def get_members_of_workspace(self, workspace_id):
+        url = f"{self.api_url}/api/workspaces/{workspace_id}/members"
+        response = do_json_request(self.session, url, "get")
+        return json.loads(response.text)
+
     def get_comments_of_content(self, workspace_id, content_id):
         url = f"{self.api_url}/api/workspaces/{workspace_id}/contents/{content_id}/comments"
         response = do_json_request(self.session, url, "get")
