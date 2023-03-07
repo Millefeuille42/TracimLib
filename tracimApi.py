@@ -25,8 +25,11 @@ class TracimApi:
         response = do_json_request(self.session, url, "get")
         return json.loads(response.text)
 
-    def get_contents_of_workspace(self, workspace_id: str):
-        url = f"{self.api_url}/api/workspaces/{workspace_id}/contents"
+    def get_contents_of_workspace(self, workspace_id: str, parent_id: str = None):
+        params = ""
+        if parent_id is not None:
+            params = f"?parent_ids={parent_id}"
+        url = f"{self.api_url}/api/workspaces/{workspace_id}/contents{params}"
         response = do_json_request(self.session, url, "get")
         return json.loads(response.text)
 
