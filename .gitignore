@@ -1,8 +1,6 @@
+env
 venv
-venv/
-
-__pycache__
-__pycache__/
-
+*.egg-info
+main.py
 .idea
-.idea/
+.vscode
